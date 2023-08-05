@@ -1,0 +1,8 @@
+{
+  "/convenios/page": "app/convenios/page.js",
+  "/register/page": "app/register/page.js",
+  "/login/page": "app/login/page.js",
+  "/cart/page": "app/cart/page.js",
+  "/cursos/page": "app/cursos/page.js",
+  "/dashboard/student/page": "app/dashboard/student/page.js"
+}

@@ -1,6 +1,6 @@
 'use client';
 import Link from "next/link";
-import {useAuthContext} from "@/hooks/useAuthContext";
+import {useAuthContext} from "../../hooks/useAuthContext";
 
 export default function Example() {
   const {loginUser} = useAuthContext()

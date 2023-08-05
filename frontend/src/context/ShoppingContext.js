@@ -22,7 +22,10 @@ export const ShoppingProvider = ({ children }) => {
   }, [products]);
 
   let addToKart = (product) => {
-    setProducts([...products, product]);
+    const cursoExist = products.find((curso)=>curso.id===product.id)
+    if (!cursoExist) {
+      setProducts([...products, product]);
+    }
   };
   let removeFromKart = (id) => {
     const updatedProducts = products.filter((product) => product.id !== id);

@@ -1,4 +1,4 @@
-import CursosList from "@/components/Cursos/CursosList"
+import CursosList from "../../components/Cursos/CursosList"
 
 async function getData() {
   const res = await fetch('http://127.0.0.1:8000/api/v1/courses/list/')
