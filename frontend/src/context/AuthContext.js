@@ -1,6 +1,6 @@
 'use client'
 
-import React,{ createContext, useState, useEffect} from 'react'
+import { createContext, useState, useEffect} from 'react'
 import jwt_decode from "jwt-decode";
 import {useRouter, redirect} from 'next/navigation'
 
@@ -31,11 +31,11 @@ export const AuthProvider = ({children}) => {
                 'rut':e.target.run.value,
                 'address':e.target.address.value,
                 'cellphone':e.target.cellphone.value,
-                "user_type": 'Student',
-                "has_licence": false,
-                "practic_eval": false,
-                "teoric_eval": false,
-                "psychotechnic_eval": false
+                'user_type': 'Student',
+                'has_licence': false,
+                'practic_eval': false,
+                'teoric_eval': false,
+                'psychotechnic_eval': false
             })
         })
         let data = await response.json()
@@ -45,7 +45,7 @@ export const AuthProvider = ({children}) => {
             setUser(jwt_decode(data.access))
             localStorage.setItem('authTokens', JSON.stringify(data))
             setLoading(true)
-            router.push('/dashboard')
+            router.push('/dashboard/student')
         }else{
             alert('Something went wrong!')
         }
@@ -70,7 +70,6 @@ export const AuthProvider = ({children}) => {
             setUser(jwt_decode(data.access))
             localStorage.setItem('authTokens', JSON.stringify(data))
             setLoading(true)
-            console.log(jwt_decode(data.access).user_type)
             if (jwt_decode(data.access).user_type=='student') {router.push('/dashboard/student')}
             if (jwt_decode(data.access).user_type=='professor') {router.push('/dashboard/professor')}
             if (jwt_decode(data.access).user_type=='seller') {router.push('/dashboard/seller')}

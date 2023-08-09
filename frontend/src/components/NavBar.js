@@ -9,6 +9,7 @@ const navigation = [
   { name: 'Cursos', href: '/cursos', current: false },
   { name: 'Convenios', href: '/convenios', current: false },
   { name: 'Somos', href: '/about', current: false },
+  { name: 'Cart', href: '/cart', current: false },
 ]
 
 function classNames(...classes) {
@@ -19,7 +20,6 @@ export default function NavBar() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     const {user, logoutUser} = useAuthContext()
-
 
   return (
     <Disclosure as="nav" className="bg-gray-800">
@@ -67,7 +67,7 @@ export default function NavBar() {
                   </div>
                 </div>
               </div>
-              {!user?//
+              {!user?
               <div className="grid grid-cols-2 gap-2">
                 <Link href="/login" className="rounded-md border-solid border-2 border-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                   Iniciar sesion

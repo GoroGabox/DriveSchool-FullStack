@@ -4,7 +4,6 @@ import { useAuthContext } from '../hooks/useAuthContext'
 
 const PrivateRoute = ({children}) => {
     let {user} = useAuthContext()
-    console.log(user)
     if (!user) {
         return redirect('/login')
     }

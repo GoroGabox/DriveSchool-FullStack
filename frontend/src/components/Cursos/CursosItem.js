@@ -4,7 +4,6 @@ import { useShoppingContext } from "../../hooks/useShoppingContext";
 
 export default function CursosItem({ curso }) {
   let { addToKart, products } = useShoppingContext();
-  console.log(products);
   return (
     <div className="group">
       <a key={curso.id} href={"/cursos/" + curso.id}>

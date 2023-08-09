@@ -1,4 +1,6 @@
-import React from 'react'
+import CalendarioSemanal from '../../../components/dashboard/WeekCalendar'
+import CalendarioSemanalLaboral from '../../../components/dashboard/WorkWeekCalendar'
+
 
 export default function page() {
   return (
@@ -10,7 +12,7 @@ export default function page() {
         CRUD CLASES PRACTICAS
       </div>
       <div>
-        Calendario semanal de cada profesor:
+        <CalendarioSemanal/>
       </div>
     </main>
   )

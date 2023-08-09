@@ -1,6 +1,9 @@
-import React from 'react'
+"use client";
 
-export default function CursoDetail({curso}) {
+import { useShoppingContext } from "../../hooks/useShoppingContext";
+
+export default function CursoDetail({ curso }) {
+  let { addToKart } = useShoppingContext();
   return (
     <div>
       <div className="">
@@ -28,8 +31,14 @@ export default function CursoDetail({curso}) {
           <p className="mt-1 text-lg font-medium text-gray-900">
             {curso.theory_access ? "Si" : "No"}
           </p>
+          <button
+            onClick={() => addToKart(curso)}
+            className="mt-5 rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+          >
+            Agregar al carro
+          </button>
         </div>
       </div>
     </div>
-  )
+  );
 }

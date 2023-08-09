@@ -10,13 +10,11 @@ class PDFListView(ListAPIView):
     serializer_class = PDFFileSerializer
 
 class PDFCreateView(CreateAPIView):
-    permission_classes = [IsAdminUser]
     parser_classes = (MultiPartParser, FormParser)
     queryset = PDFFile.objects.all()
     serializer_class = PDFFileSerializer
 
 class PDFRetrieveUpdateDestroyView(RetrieveUpdateDestroyAPIView):
-    permission_classes = [IsAdminUser]
     parser_classes = (MultiPartParser, FormParser)
     queryset = PDFFile.objects.all()
     serializer_class = PDFFileSerializer
