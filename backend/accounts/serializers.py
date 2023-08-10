@@ -55,6 +55,10 @@ class UserRegisterSerializer(serializers.ModelSerializer):
             'cellphone',
             'user_type',
         ]
+    extra_kwargs = {
+            'password': {'write_only': True},
+            'password2': {'write_only': True},
+        }
 
     def validate(self, data):
         if data['password'] != data['password2']:

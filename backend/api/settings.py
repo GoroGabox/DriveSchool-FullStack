@@ -43,11 +43,10 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'accounts',
     'cars',
-    'contracts',
     'courses',
     'practic_classes_manager',
     'teoric_content_manager',
-    'tests',
+    'evaluations',
 ]
 
 MIDDLEWARE = [

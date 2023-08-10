@@ -3,7 +3,6 @@ import {useCoursesContext} from '../../hooks/useCoursesContext'
 
 export default function ActiveCourses() {
     let {courses, theory, practicClasses} = useCoursesContext()
-    console.log(courses)
   return (
     <div>
         <div className="">

@@ -4,8 +4,9 @@ import { useState } from "react";
 import moment from "moment";
 import "moment/locale/es";
 import ListPractices from "./ListPractices";
+import Selector from './Selector'
 
-function CalendarioSemanal() {
+function CalendarioSemanal({professors}) {
   const [fechaActual, setFechaActual] = useState(moment());
   const [fechaSeleccionada, setFechaSeleccionada] = useState(null);
   const [horaSeleccionada, setHoraSeleccionada] = useState(null);
@@ -14,8 +15,6 @@ function CalendarioSemanal() {
   const diasDeLaSemana = [];
   const diaActual = fechaActual.clone().startOf("week");
   const mesActual = fechaActual.format("MMMM").toUpperCase();
-
-  console.log(mesActual);
 
   for (let i = 0; i < 7; i++) {
     diasDeLaSemana.push(diaActual.clone().add(i, "days"));
@@ -35,23 +34,19 @@ function CalendarioSemanal() {
     "20:00-20:45",
   ];
 
-  const profesores = ['Adolfo', 'Alonso', 'Nelson'];
 
   const handleHorarioClick = (fecha, hora) => {
     setFechaSeleccionada(fecha);
     setHoraSeleccionada(hora);
     setClases([...clases, { fecha: fecha, hora: hora }]);
   };
-
-  console.log(clases);
   return (
     <div className="p-4">
       <h2 className="text-2xl font-semibold mb-4">Calendario Semanal</h2>
       <h2 className="text-2xl font-semibold mb-4">{mesActual}</h2>
-      <select name="professor" className="mb-4">
-        {profesores.map((profe, i)=><option key={i} value={profe}>{profe}</option>)}
-      </select>
+      
       <div className="flex space-x-4 mb-4">
+        <Selector array={professors}/>
         <button
           className="bg-blue-500 text-white px-4 py-2 rounded"
           onClick={() =>
@@ -96,7 +91,7 @@ function CalendarioSemanal() {
                       key={i}
                       className="py-1 cursor-pointer border border-collapse"
                       onClick={() => handleHorarioClick(dia.clone(), horario)}
-                    >-
+                    >Disponible
                     </div>
                   ))}
                 </div>

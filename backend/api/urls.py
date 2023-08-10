@@ -24,5 +24,5 @@ urlpatterns = [
     path('api/v1/cars/', include('cars.urls')),
     path('api/v1/practic_classes/', include('practic_classes_manager.urls')),
     path('api/v1/teoric_content/', include('teoric_content_manager.urls')),
-    path('api/v1/tests/', include('tests.urls')),
+    path('api/v1/evaluations/', include('evaluations.urls')),
 ]

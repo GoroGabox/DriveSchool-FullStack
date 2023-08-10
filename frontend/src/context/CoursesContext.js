@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import { createContext, useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useAuthContext } from "../hooks/useAuthContext";
@@ -11,7 +11,7 @@ export const CoursesProvider = ({ children }) => {
   const [theory, setTheory] = useState(false);
   const [practicClasses, setPracticClasses] = useState(0);
 
-  const { authTokens } = useAuthContext();
+  const { authTokens, user } = useAuthContext();
   const router = useRouter();
 
   useEffect(() => {
@@ -37,8 +37,8 @@ export const CoursesProvider = ({ children }) => {
   };
 
   const getActiveCourses = async () => {
-    try {
-      const accessToken = authTokens.access;
+    const accessToken = authTokens.access;
+    if (user.user_type=='student') {
       const response = await fetch(
         "http://127.0.0.1:8000/api/v1/courses/students-courses/",
         {
@@ -52,13 +52,9 @@ export const CoursesProvider = ({ children }) => {
       if (response.ok) {
         const data = await response.json();
         data.map((item) => getCourse(item.course));
-      } else if (response.status === 401) {
-        router.push("/");
       } else {
         console.error("Error fetching active courses");
       }
-    } catch (error) {
-      console.error("Error fetching active courses:", error);
     }
   };
 
@@ -69,17 +65,19 @@ export const CoursesProvider = ({ children }) => {
   };
 
   const checkPracticAccess = (course) => {
-    if (course.cant_clases>0) {
-      setPracticClasses((prevPracticClasses) => prevPracticClasses + course.cant_clases)
+    if (course.cant_clases > 0) {
+      setPracticClasses(
+        (prevPracticClasses) => prevPracticClasses + course.cant_clases
+      );
     }
   };
 
   const contextData = {
     courses: courses,
-    theory : theory,
-    practicClasses : practicClasses,
+    theory: theory,
+    practicClasses: practicClasses,
   };
-  
+
   return (
     <CoursesContext.Provider value={contextData}>
       {children}

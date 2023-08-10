@@ -9,7 +9,6 @@ class Migration(migrations.Migration):
     dependencies = [
         ('cars', '0001_initial'),
         ('accounts', '0002_professor_remove_profesor_car_and_more'),
-        ('contracts', '0002_alter_contract_profesor'),
     ]
 
     operations = [

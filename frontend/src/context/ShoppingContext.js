@@ -80,7 +80,8 @@ export const ShoppingProvider = ({ children }) => {
       for (const product of products) {
         await registerSale(product, user);
       }
-      setProducts([]);      
+      setProducts([]);
+      return      
     }
     router.push("/register")
   };

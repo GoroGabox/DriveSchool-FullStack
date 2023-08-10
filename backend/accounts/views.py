@@ -3,11 +3,11 @@ from django.contrib.auth import get_user_model
 from accounts.serializers import MyTokenObtainPairSerializer, UserSerializer, ProfessorRegisterSerializer, SellerRegisterSerializer, StudentRegisterSerializer, StudentSerializer, ProfessorSerializer, SellerSerializer
 from rest_framework import status
 from rest_framework.views import APIView
-from rest_framework.generics import CreateAPIView, RetrieveUpdateDestroyAPIView
+from rest_framework.generics import CreateAPIView
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework_simplejwt.views import TokenObtainPairView
-from rest_framework.generics import ListAPIView
+from rest_framework.viewsets import ModelViewSet
 from .models import Student, Seller, Professor
 
 User = get_user_model()
@@ -73,19 +73,19 @@ class LogOutAPIView(APIView):
         except Exception as e:
             return Response(status=status.HTTP_400_BAD_REQUEST)
 
-class UserListView(ListAPIView):
+class UserListViewset(ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes= []
 
-class StudentView(RetrieveUpdateDestroyAPIView):
+class StudentViewset(ModelViewSet):
     queryset = Student.objects.all()
     serializer_class = StudentSerializer
 
-class ProfessorView(RetrieveUpdateDestroyAPIView):
+class ProfessorViewset(ModelViewSet):
     queryset = Professor.objects.all()
     serializer_class = ProfessorSerializer
 
-class SellerView(RetrieveUpdateDestroyAPIView):
+class SellerViewset(ModelViewSet):
     queryset = Seller.objects.all()
     serializer_class = SellerSerializer
