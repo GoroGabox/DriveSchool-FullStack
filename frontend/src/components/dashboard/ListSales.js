@@ -1,6 +1,7 @@
 import ItemSale from "./ItemSale";
 
-export default function ListSales({ sales }) {
+export default function ListSales({ sales, cursos, stds }) {
+
   return (
     <div className="p-8">
       <h3>Ventas</h3>
@@ -23,7 +24,7 @@ export default function ListSales({ sales }) {
         </thead>
         <tbody className=" divide-y divide-gray-200">
           {sales.map((sale, i) => (
-            <ItemSale key={i} sale={sale} />
+            <ItemSale key={i} sale={sale} cursos={cursos} stds={stds}/>
           ))}
         </tbody>
       </table>

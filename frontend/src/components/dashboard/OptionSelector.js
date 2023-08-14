@@ -1,5 +1,3 @@
-import React from 'react'
-
 export default function OptionSelector({item}) {
-  return <option value={item}>{item.name} {item.lastname}</option>
+  return <option value={item}>{item.name+" "+item.lastname}</option>
 }

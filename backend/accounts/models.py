@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils import timezone
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from cars.models import Car
 
 class UserManager(BaseUserManager):
@@ -31,7 +31,7 @@ class UserManager(BaseUserManager):
         extra_fields.setdefault('is_superuser', True)
         return self.create_user(email, name, password, **extra_fields)
 
-class User(AbstractBaseUser):
+class User(AbstractBaseUser, PermissionsMixin):
     USER_TYPE_CHOICES = (
         ('student', 'Student'),
         ('professor', 'Professor'),
@@ -45,6 +45,9 @@ class User(AbstractBaseUser):
     address = models.CharField(max_length=200, blank=True, null=True)
     cellphone = models.CharField(max_length=15, blank=True, null=True)
     created_date = models.DateField(auto_now_add=True)
+    is_active = models.BooleanField(default=True)
+    is_staff = models.BooleanField(default=False)
+    is_superuser = models.BooleanField(default=False)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['name','lastname' ,'rut','address','cellphone']

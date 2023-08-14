@@ -889,8 +889,23 @@ select {
 .h-full {
   height: 100%;
 }
+.h-auto {
+  height: auto;
+}
+.h-\[\] {
+  height: ;
+}
 .max-h-\[66vh\] {
   max-height: 66vh;
+}
+.max-h-\[\] {
+  max-height: ;
+}
+.max-h-\[690\] {
+  max-height: 690;
+}
+.max-h-\[690px\] {
+  max-height: 690px;
 }
 .min-h-full {
   min-height: 100%;
@@ -1106,6 +1121,10 @@ select {
   --tw-bg-opacity: 1;
   background-color: rgb(229 231 235 / var(--tw-bg-opacity));
 }
+.bg-gray-50 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(249 250 251 / var(--tw-bg-opacity));
+}
 .bg-gray-800 {
   --tw-bg-opacity: 1;
   background-color: rgb(31 41 55 / var(--tw-bg-opacity));
@@ -1126,9 +1145,9 @@ select {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
-.bg-gray-50 {
+.bg-green-300 {
   --tw-bg-opacity: 1;
-  background-color: rgb(249 250 251 / var(--tw-bg-opacity));
+  background-color: rgb(134 239 172 / var(--tw-bg-opacity));
 }
 .bg-gradient-to-tr {
   background-image: linear-gradient(to top right, var(--tw-gradient-stops));
@@ -1229,13 +1248,13 @@ select {
   padding-top: 5rem;
   padding-bottom: 5rem;
 }
-.py-32 {
-  padding-top: 8rem;
-  padding-bottom: 8rem;
-}
 .py-3 {
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
+}
+.py-32 {
+  padding-top: 8rem;
+  padding-bottom: 8rem;
 }
 .py-4 {
   padding-top: 1rem;
@@ -1313,6 +1332,9 @@ select {
 .uppercase {
   text-transform: uppercase;
 }
+.leading-4 {
+  line-height: 1rem;
+}
 .leading-6 {
   line-height: 1.5rem;
 }
@@ -1321,9 +1343,6 @@ select {
 }
 .leading-9 {
   line-height: 2.25rem;
-}
-.leading-4 {
-  line-height: 1rem;
 }
 .tracking-tight {
   letter-spacing: -0.025em;

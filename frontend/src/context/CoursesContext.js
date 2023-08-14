@@ -37,24 +37,26 @@ export const CoursesProvider = ({ children }) => {
   };
 
   const getActiveCourses = async () => {
-    const accessToken = authTokens.access;
-    if (user.user_type=='student') {
-      const response = await fetch(
-        "http://127.0.0.1:8000/api/v1/courses/students-courses/",
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${accessToken}`,
-          },
+    if (user) {
+      const accessToken = authTokens.access;
+      if (user.user_type=='student') {
+        const response = await fetch(
+          "http://127.0.0.1:8000/api/v1/courses/students-courses/",
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${accessToken}`,
+            },
+          }
+        );
+        if (response.ok) {
+          const data = await response.json();
+          data.map((item) => getCourse(item.course));
+        } else {
+          console.error("Error fetching active courses");
         }
-      );
-      if (response.ok) {
-        const data = await response.json();
-        data.map((item) => getCourse(item.course));
-      } else {
-        console.error("Error fetching active courses");
-      }
+      }      
     }
   };
 

@@ -9,9 +9,10 @@ export default CalendarContext;
 
 export const CalendarProvider = ({ children }) => {
   const [fechaActual, setFechaActual] = useState(moment());
-  const [fechaSeleccionada, setFechaSeleccionada] = useState(null);
-  const [horaSeleccionada, setHoraSeleccionada] = useState(null);
+  const [spotsSeleccionados, setSpotsSeleccionados] = useState([]);
   const [clases, setClases] = useState([]);
+  const [selectedSlot, setSelectedSlot] = useState(null);
+  const [profesor, setProfesor] = useState(null);
 
   const diasDeLaSemana = [];
   const diaActual = fechaActual.clone().startOf("week");
@@ -35,13 +36,60 @@ export const CalendarProvider = ({ children }) => {
     "20:00-20:45",
   ];
 
-  const handleHorarioClick = (fecha, hora) => {
-    setFechaSeleccionada(fecha);
-    setHoraSeleccionada(hora);
-    setClases([...clases, { fecha: fecha, hora: hora }]);
+  const handleProfesor = (event) => {
+    const profe = event.target.value;
+    setProfesor(profe)
   };
-  const contextValue = {
-    
+
+  const handleHorarioClick = (dia, horario) => {
+    const nuevoSpot = { dia, horario };
+    const spotYaSeleccionado = spotsSeleccionados.find(
+      (spot) => spot.dia === dia && spot.horario === horario
+    );
+    if (spotYaSeleccionado) {
+      setSpotsSeleccionados(spotsSeleccionados.filter((spot) => spot !== spotYaSeleccionado));
+      setClases(clases.filter(clase => !(clase.dia === dia && clase.horario === horario)));
+    } else {
+      setSpotsSeleccionados([...spotsSeleccionados, nuevoSpot]);
+      setClases([...clases, { dia: dia, horario: horario }]);
+    }
+  };
+
+  const handlePastWeek = () => {
+    setFechaActual(fechaActual.clone().subtract(7, "days"));
+  };
+
+  const handleNextWeek = () => {
+    setFechaActual(fechaActual.clone().add(7, "days"));
+  };
+
+  const handleEraseClases = () => {
+    setClases([])
+  }
+
+  const handleHorarioColorChange = (dia, horario) => {
+    setSelectedSlot({ dia, horario });
+  };
+
+  const registerClasses = () => {
+    console.log(profesor)
+    console.log(clases)
+  }
+
+  let contextValue = {
+    spotsSeleccionados: spotsSeleccionados,
+    selectedSlot: selectedSlot,
+    clases: clases,
+    horarios: horarios,
+    mesActual: mesActual,
+    diasDeLaSemana: diasDeLaSemana,
+    handleHorarioClick: handleHorarioClick,
+    handlePastWeek: handlePastWeek,
+    handleNextWeek: handleNextWeek,
+    handleHorarioColorChange: handleHorarioColorChange,
+    handleEraseClases : handleEraseClases,
+    registerClasses: registerClasses,
+    handleProfesor : handleProfesor,
   };
 
   return (

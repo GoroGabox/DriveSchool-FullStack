@@ -5,7 +5,6 @@ import { useAuthContext } from "../hooks/useAuthContext";
 const PrivateRoute = ({ children }) => {
   let { user } = useAuthContext();
   const router = useRouter()
-  console.log(user);
   if (!user) {
       return router.push("/login");
 }
